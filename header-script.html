@@ -6,8 +6,7 @@ var root=document.getElementById("bnow");
 if(!root||root.getAttribute("data-ready"))return;
 root.setAttribute("data-ready","1");
 (function(){
-var RATES_URL='https://raw.githubusercontent.com/kpsouza-boss/boss-homes-rates/main/rates.json';
-var DEF={asOf:'2026-11-13',fixed30:7.50,fha30:7.05,va30:7.07,chg:{fixed30:0.08,fha30:0.05,va30:0.06}};
+var DEF={fixed30:7.50,fha30:7.10,va30:7.10};
 var KEYS={c:'fixed30',f:'fha30',v:'va30'};
 var rates=DEF,sel='c';
 var L={c:{d:20,r:DEF.fixed30,pmi:0.6,t:false},f:{d:3.5,r:DEF.fha30,t:false},v:{d:0,r:DEF.va30,ex:false,sb:false,t:false}};
@@ -51,8 +50,7 @@ function load(){
 var o=L[sel];
 $('ld').value=o.d;$('lr').value=o.r.toFixed(2);
 $('pmirow').hidden=sel!=='c';$('exrow').hidden=sel!=='v';$('sbrow').hidden=sel!=='v';
-$('usetoday').hidden=!o.t;
-set('ttl',NAMES[sel][0]);set('sub',NAMES[sel][1]+'. Rate starts at today\'s Mortgage News Daily index and you can change it.');
+set('ttl',NAMES[sel][0]);set('sub',NAMES[sel][1]+'. Rate starts at an example. Type today\'s rate from the widget above.');
 ['c','f','v'].forEach(function(k){$('b'+k).setAttribute('aria-pressed',k===sel?'true':'false');});
 }
 function upd(){
@@ -86,29 +84,14 @@ var oo=L[k[0]],x=calc(k[0],oo,price,oo.r),e=app+x.pr;
 set(k[1]+'d',money(x.down));set(k[1]+'m',money(x.pay));set(k[1]+'r',retText(e,x.down));
 });
 }
-function setDelta(id,v){var el=$(id);if(typeof v!=='number'){el.textContent='';return;}el.textContent=(v>0?'+':(v<0?'-':''))+Math.abs(v).toFixed(2)+' on the latest update';}
 function applyRates(r){
 rates=r;
-set('r30',r.fixed30.toFixed(2)+'%');set('rfha',r.fha30.toFixed(2)+'%');set('rva',r.va30.toFixed(2)+'%');
-var c=r.chg||{};setDelta('d30',c.fixed30);setDelta('dfha',c.fha30);setDelta('dva',c.va30);
-set('ras','Mortgage News Daily rate index, as of '+fmtDate(r.asOf)+'.');
-var p=r.asOf.split('-'),age=(Date.now()-Date.UTC(+p[0],+p[1]-1,+p[2]))/86400000;
-$('stale').hidden=age<=6;
-['c','f','v'].forEach(function(k){if(!L[k].t){L[k].r=r[KEYS[k]];}});
+['c','f','v'].forEach(function(k){L[k].r=r[KEYS[k]];});
 load();upd();
 }
-function okRates(r){
-if(!r||typeof r.asOf!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(r.asOf))return false;
-return [r.fixed30,r.fha30,r.va30].every(function(x){return typeof x==='number'&&x>1&&x<20;});
-}
-$('lr').addEventListener('input',function(){L[sel].t=true;$('usetoday').hidden=false;});
-$('usetoday').addEventListener('click',function(){var o=L[sel];o.t=false;o.r=rates[KEYS[sel]];load();upd();});
 ['price','rent','tih','rc','g','drop','ld','lr','lp','lx','ls'].forEach(function(id){var el=$(id);el.addEventListener('input',upd);el.addEventListener('change',upd);});
 ['c','f','v'].forEach(function(k){$('b'+k).addEventListener('click',function(){clamp();sel=k;load();upd();});});
 applyRates(DEF);
-try{
-fetch(RATES_URL,{cache:'no-store'}).then(function(res){return res.ok?res.json():null;}).then(function(j){if(okRates(j))applyRates(j);}).catch(function(){});
-}catch(e){}
 })();
 }
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
