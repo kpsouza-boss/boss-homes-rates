@@ -87,16 +87,16 @@ var oo=L[k[0]],x=calc(k[0],oo,price,oo.r),e=app+x.pr;
 set(k[1]+'d',money(x.down));set(k[1]+'m',money(x.pay));set(k[1]+'w',wt(12*rent-(12*(x.pay+tih)+rep-e)));
 });
 var rg=val('rg',3),cs=Math.max(val('cs',6),0),N=yrs;
-var rentN=0,payN=0,grow=1.0;
+var rentN=0,payN=0;
 for(var y=0;y<N;y++){rentN+=12*rent*Math.pow(1+rg/100,y);payN+=12*(a.pay+tih)+price*Math.pow(1+g/100,y)*rp/100;}
-var valN=price*Math.pow(1+g/100,N),eqN=valN-price+prinN(a.loan,r0,N);
-var realBuy=payN-eqN,gap=rentN-realBuy;
+var valN=price*Math.pow(1+g/100,N),balN=a.loan-prinN(a.loan,r0,N);
+var eqAll=valN-balN,realBuy=a.down+payN-eqAll,gap=rentN-realBuy;
 set('rpay',money(rentN));set('rbuild',money(0));set('rreal',money(rentN));
-set('upay',money(payN));set('ubuild',money(eqN));set('ureal',money(realBuy));
-var balN=a.loan-prinN(a.loan,r0,N);
-set('ryv','After '+N+(N===1?' year':' years')+', renting costs about '+money(rentN)+' and builds no equity. Buying costs about '+money(realBuy)+' after counting the equity you build, and you would own a home worth about '+money(valN)+' with about '+money(balN)+' left on the loan. '+(gap>=0?'Buying costs about '+money(gap)+' less.':'Buying costs about '+money(-gap)+' more.'));
-set('rnote','Equity is on paper until you sell. Selling usually costs money too, about '+money(valN*cs/100)+' at '+cs+'%, and that is not counted above. Prices and rent can move either way, so treat this as a what-if, not a forecast.');
-['1','2','3','4','5'].forEach(function(n){$('y'+n).setAttribute('aria-pressed',String(parseInt(n,10)===yrs));});
+set('upay',money(a.down+payN));set('ubuild',money(eqAll));set('ureal',money(realBuy));
+set('ubs','Home worth about '+money(valN)+', loan left about '+money(balN));
+set('ryv','After '+N+(N===1?' year':' years')+', renting costs about '+money(rentN)+' and builds no equity. Buying costs about '+money(realBuy)+' after counting your equity, and you would own a home worth about '+money(valN)+' with about '+money(balN)+' left on the loan. '+(gap>=0?'Buying costs about '+money(gap)+' less.':'Buying costs about '+money(-gap)+' more. Rent can keep rising while a fixed loan payment does not, so that gap tends to shrink the longer you stay.'));
+set('rnote','Equity is on paper until you sell. Selling usually costs money too, about '+money(valN*cs/100)+' at '+cs+'%, and closing costs when you buy are not counted either. Prices and rent can move either way, so treat this as a what-if, not a forecast.');
+['1','2','3','4','5','10'].forEach(function(n){$('y'+n).setAttribute('aria-pressed',String(parseInt(n,10)===yrs));});
 }
 function applyRates(r){
 rates=r;
@@ -105,7 +105,7 @@ load();upd();
 }
 ['price','rent','tih','g','drop','ld','lr','lp','lx','ls','rg','rp','cs'].forEach(function(id){var el=$(id);el.addEventListener('input',upd);el.addEventListener('change',upd);});
 ['c','f','v'].forEach(function(k){$('b'+k).addEventListener('click',function(){clamp();sel=k;load();upd();});});
-['1','2','3','4','5'].forEach(function(n){$('y'+n).addEventListener('click',function(){yrs=parseInt(n,10);upd();});});
+['1','2','3','4','5','10'].forEach(function(n){$('y'+n).addEventListener('click',function(){yrs=parseInt(n,10);upd();});});
 applyRates(DEF);
 })();
 }
