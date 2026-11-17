@@ -74,8 +74,8 @@
 #bnow .paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:14px}
 #bnow .path{border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
 #bnow .path h4{font-family:var(--ff-head);font-size:20px;margin:0 0 10px;font-weight:700}
-#bnow .path dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:14px}
-#bnow .path dt{color:var(--muted)}
+#bnow .path dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:6px 12px;font-size:14px}
+#bnow .path dt{color:var(--muted);white-space:nowrap}
 #bnow .path dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;font-weight:700;min-width:0}
 #bnow .pos{color:var(--pos)}
 #bnow .neg{color:var(--neg)}
@@ -85,6 +85,7 @@
 #bnow th,#bnow td{padding:10px 8px;text-align:right;border-bottom:1px solid var(--line)}
 #bnow th:first-child,#bnow td:first-child{text-align:left}
 #bnow th{font-size:13px;color:var(--muted);font-weight:700}
+@media(max-width:480px){#bnow table{font-size:13px}#bnow th,#bnow td{padding:10px 4px}#bnow th{font-size:12px}}
 #bnow .note{font-size:14px;color:var(--muted);margin-top:16px;max-width:70ch}
 #bnow .faq{margin-top:22px;border-top:1px solid var(--line)}
 #bnow details{border-bottom:1px solid var(--line)}
@@ -124,6 +125,7 @@
 <h1>Should I Buy a Home Now or Wait?</h1>
 <p class="lede" style="margin-top:18px">Waiting for a lower rate can save money. It can also cost money if prices climb while you wait. Put in your own numbers and see both, side by side.</p>
 <p class="cities">Built for buyers in Carlsbad, Oceanside, Encinitas, San Marcos, Vista, Escondido, and San Diego.</p>
+<div class="btns" style="margin-top:22px"><a class="btn pri" href="https://kyle.athomeinsocal.com" target="_blank" rel="noopener">Start your home search</a></div>
 <div class="mndw" style="margin-top:22px;max-width:220px">
 <div class="mnd-rates-widget" style="width: 220px; height: 480px; font-size: 12px; ">
 <div class="w-header" style="text-align: center; padding:4px 0;background-color: #336699; color: #FFFFFF;"><a href="https://www.mortgagenewsdaily.com/mortgage-rates" target="_blank" style="color: #FFFFFF;text-decoration:none;">Today&#x27;s Mortgage Rates</a></div>
@@ -141,16 +143,16 @@
 <div class="cols">
 <div class="col"><h3>The price</h3><p>Home prices can rise, fall, or hold steady over a year. Drag the slider to see each one, because a higher price means a bigger loan.</p></div>
 <div class="col"><h3>The rate</h3><p>A lower rate lowers the monthly payment. A higher price pushes it back up. The calculator shows what the two do together.</p></div>
-<div class="col"><h3>The rent</h3><p>Every month you wait, rent goes out and no equity builds. That belongs in the math too, so there is a spot for it.</p></div>
+<div class="col"><h3>The rent</h3><p>You pay rent every month. It does not build equity, and that adds up. Put your rent in the calculator and see what a year of waiting really costs.</p></div>
 </div>
 <div class="lev">
 <div>
 <h3>Why the down payment matters</h3>
-<p style="margin-top:8px">A home gains or loses value on its full price, not only on the part you paid in cash. On a $980,000 home, a 1.5% gain is $14,700 either way. It works in reverse when prices dip, so the sliders below can go under zero.</p>
+<p style="margin-top:8px">A home gains or loses value on its full price, not only on the part you paid in cash. On a $750,000 home, a 1.5% gain is $11,250 either way. It works in reverse when prices dip, so the sliders below can go under zero.</p>
 </div>
-<div class="levbox" aria-label="Example: 1.5% gain on a $980,000 home">
-<div><b>7.5%</b><span>of a $196,000 down payment (20%)</span></div>
-<div><b>42.9%</b><span>of a $34,300 down payment (3.5%)</span></div>
+<div class="levbox" aria-label="Example: 1.5% gain on a $750,000 home">
+<div><b>7.5%</b><span>of a $150,000 down payment (20%)</span></div>
+<div><b>42.9%</b><span>of a $26,250 down payment (3.5%)</span></div>
 </div>
 </div>
 </div>
@@ -163,10 +165,10 @@
 
 <div class="panel">
 <div class="grid2">
-<div class="fld"><label for="bn_price">Home price</label><input type="number" id="bn_price" value="980000" step="10000" inputmode="decimal"></div>
+<div class="fld"><label for="bn_price">Home price</label><input type="number" id="bn_price" value="750000" step="10000" inputmode="decimal"></div>
 <div class="fld"><label for="bn_rent">Rent you pay now (monthly)</label><input type="number" id="bn_rent" value="3800" step="100" inputmode="decimal"></div>
 <div class="fld"><label for="bn_tih">Taxes, insurance, and HOA (monthly)</label><input type="number" id="bn_tih" value="1100" step="50" inputmode="decimal"></div>
-<div class="fld"><label for="bn_rc">Refinance closing costs</label><input type="number" id="bn_rc" value="5000" step="500" inputmode="decimal"></div>
+<div class="fld"><label for="bn_rc">Refinance closing costs (% of loan)</label><input type="number" id="bn_rc" value="4" step="0.5" inputmode="decimal"></div>
 <div class="fld"><div class="sl"><label for="bn_g">Home prices in 12 months</label><b id="bn_gout"></b></div><input type="range" id="bn_g" min="-8" max="8" step="0.5" value="1.5"></div>
 <div class="fld"><div class="sl"><label for="bn_drop">Rates in 12 months</label><b id="bn_dout"></b></div><input type="range" id="bn_drop" min="-1.5" max="1.5" step="0.25" value="0.5"></div>
 </div>
@@ -224,6 +226,7 @@
 <dt>Monthly payment</dt><dd id="bn_m3"></dd>
 <dt>Compared to buy now</dt><dd id="bn_c3"></dd>
 <dt>Also pay</dt><dd id="bn_o3"></dd>
+<dt>Cost of waiting</dt><dd id="bn_o3b"></dd>
 </dl></div>
 </div>
 </div>
@@ -233,6 +236,7 @@
 <div class="tiles">
 <div class="tile"><div class="k">Cost of owning, after equity</div><div class="v" id="bn_own"></div></div>
 <div class="tile"><div class="k">Rent paid while waiting</div><div class="v" id="bn_rentc"></div></div>
+<div class="tile hi"><div class="k">Cost of waiting, year one</div><div class="v" id="bn_cw"></div></div>
 </div>
 <p class="verdict" id="bn_verdict"></p>
 </div>
@@ -240,12 +244,12 @@
 <div class="panel">
 <h3>Same home, three loans</h3>
 <div class="tw"><table>
-<tr><th>Loan</th><th>Cash down</th><th>Monthly</th><th>Return on cash</th></tr>
-<tr><td>FHA</td><td id="bn_bd"></td><td id="bn_bm"></td><td id="bn_br"></td></tr>
-<tr><td>VA</td><td id="bn_vd"></td><td id="bn_vm"></td><td id="bn_vr"></td></tr>
-<tr><td>Conventional</td><td id="bn_ad"></td><td id="bn_am"></td><td id="bn_ar"></td></tr>
+<tr><th>Loan</th><th>Cash down</th><th>Monthly</th><th>Cost of waiting</th></tr>
+<tr><td>FHA</td><td id="bn_bd"></td><td id="bn_bm"></td><td id="bn_bw"></td></tr>
+<tr><td>VA</td><td id="bn_vd"></td><td id="bn_vm"></td><td id="bn_vw"></td></tr>
+<tr><td>Conventional</td><td id="bn_ad"></td><td id="bn_am"></td><td id="bn_aw"></td></tr>
 </table></div>
-<p class="note">Each loan uses its own rate and down payment from the tabs above. Change a loan's tab to change its row.</p>
+<p class="note">Each loan uses its own rate and down payment from the tabs above. Cost of waiting is a year of rent minus the cost of owning after equity. Change a loan's tab to change its row.</p>
 </div>
 </div>
 </section>
@@ -257,9 +261,9 @@
 <details><summary>Should I buy a house now or wait in Carlsbad, Oceanside, or Encinitas?</summary><p>It depends on how long you plan to stay, how much cash you have, what you pay in rent, and how you would feel if prices or rates moved the other way. Waiting can lower your payment if rates fall. It can also raise your price and cost you a year of rent with no equity built. The calculator above puts both sides next to each other using your numbers. For a plan built around your situation, talk with Kyle and a licensed lender.</p></details>
 <details><summary>Will mortgage rates go down in 2027?</summary><p>Nobody knows, and anyone who says they do is guessing. Rates move with inflation, the economy, and the bond market. Instead of betting on a number, drag the rate slider and see what a drop would and would not change. Some buyers close at today's rate and refinance later if rates fall far enough to cover the costs. That is not guaranteed, and it depends on qualifying at that time.</p></details>
 <details><summary>How much does waiting a year cost?</summary><p>It can cost in two ways. The price may rise, which raises the loan, and the rent you pay stays with the landlord and builds no equity. It can also save money, through a lower rate or more time to build a down payment. The calculator shows the price change, the new payment, and a year of rent in one view.</p></details>
-<details><summary>Why does a smaller down payment change the return on my cash?</summary><p>A home gains or loses value on its full price, not only on the part you paid in cash. On a $980,000 home, a 1.5% gain is $14,700. That is 7.5% of a $196,000 down payment and 42.9% of a $34,300 down payment. It works the other way when prices dip, and a smaller down payment usually means a bigger loan and mortgage insurance.</p></details>
+<details><summary>Why does a smaller down payment change the return on my cash?</summary><p>A home gains or loses value on its full price, not only on the part you paid in cash. On a $750,000 home, a 1.5% gain is $11,250. That is 7.5% of a $150,000 down payment and 42.9% of a $26,250 down payment. It works the other way when prices dip, and a smaller down payment usually means a bigger loan and mortgage insurance.</p></details>
 <details><summary>What is the difference between FHA, VA, and conventional loans?</summary><p>FHA loans allow as little as 3.5% down. They add an upfront mortgage insurance premium of 1.75%, which is usually financed into the loan, plus a monthly premium. VA loans are for eligible service members, veterans, and some surviving spouses. They allow no down payment and have no monthly mortgage insurance, but they carry a one-time funding fee, 2.15% for first use with less than 5% down, unless you are exempt. Conventional loans often need private mortgage insurance when the down payment is under 20%.</p></details>
-<details><summary>What does buy now, refinance later mean?</summary><p>You buy with today's rate and refinance if rates drop enough to be worth it. A refinance has closing costs, and it takes time to earn them back. The calculator shows the new payment and how many months it takes to cover the costs you enter. A refinance is never guaranteed, since you have to qualify when you apply.</p></details>
+<details><summary>What does buy now, refinance later mean?</summary><p>You buy with today's rate and refinance if rates drop enough to be worth it. A refinance has closing costs, often 2% to 5% of the new loan and sometimes up to 6%, and it takes time to earn them back. The calculator starts at 4% and shows how many months it takes to cover them. A refinance is never guaranteed, since you have to qualify when you apply.</p></details>
 
 </div>
 </div>
