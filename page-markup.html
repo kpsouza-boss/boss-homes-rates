@@ -166,9 +166,8 @@
 <div class="panel">
 <div class="grid2">
 <div class="fld"><label for="bn_price">Home price</label><input type="number" id="bn_price" value="750000" step="10000" inputmode="decimal"></div>
-<div class="fld"><label for="bn_rent">Rent you pay now (monthly)</label><input type="number" id="bn_rent" value="3800" step="100" inputmode="decimal"></div>
+<div class="fld"><label for="bn_rent">Rent you pay now (monthly)</label><input type="number" id="bn_rent" value="3500" step="100" inputmode="decimal"></div>
 <div class="fld"><label for="bn_tih">Taxes, insurance, and HOA (monthly)</label><input type="number" id="bn_tih" value="1100" step="50" inputmode="decimal"></div>
-<div class="fld"><label for="bn_rc">Refinance closing costs (% of loan)</label><input type="number" id="bn_rc" value="4" step="0.5" inputmode="decimal"></div>
 <div class="fld"><div class="sl"><label for="bn_g">Home prices in 12 months</label><b id="bn_gout"></b></div><input type="range" id="bn_g" min="-8" max="8" step="0.5" value="1.5"></div>
 <div class="fld"><div class="sl"><label for="bn_drop">Rates in 12 months</label><b id="bn_dout"></b></div><input type="range" id="bn_drop" min="-1.5" max="1.5" step="0.25" value="0.5"></div>
 </div>
@@ -193,36 +192,28 @@
 <p class="hint" id="bn_hint" role="status"></p>
 <div class="tiles">
 <div class="tile"><div class="k">Monthly payment</div><div class="v" id="bn_pay"></div></div>
-<div class="tile"><div class="k">Cash down</div><div class="v" id="bn_down"></div></div>
+<div class="tile"><div class="k">Down payment</div><div class="v" id="bn_down"></div></div>
 <div class="tile"><div class="k">Equity gained, year one</div><div class="v" id="bn_eq"></div></div>
-<div class="tile hi"><div class="k">Return on cash down</div><div class="v" id="bn_ret"></div></div>
+<div class="tile hi"><div class="k">Return on investment</div><div class="v" id="bn_ret"></div></div>
 </div>
 <p class="brk" id="bn_brk"></p>
 </div>
 
 <div class="panel">
-<h3>Three paths, side by side</h3>
+<h3>Two paths, side by side</h3>
 <div class="paths">
 <div class="path"><h4>Buy now</h4><dl>
 <dt>Price</dt><dd id="bn_p1"></dd>
 <dt>Rate</dt><dd id="bn_r1"></dd>
-<dt>Cash down</dt><dd id="bn_d1"></dd>
+<dt>Down payment</dt><dd id="bn_d1"></dd>
 <dt>Monthly payment</dt><dd id="bn_m1"></dd>
 <dt>Compared to buy now</dt><dd>Starting point</dd>
 <dt>Also pay</dt><dd>Nothing extra</dd>
 </dl></div>
-<div class="path"><h4>Buy now, refinance later</h4><dl>
-<dt>Price</dt><dd id="bn_p2"></dd>
-<dt>Rate after refinance</dt><dd id="bn_r2"></dd>
-<dt>Cash down</dt><dd id="bn_d2"></dd>
-<dt>Monthly payment</dt><dd id="bn_m2"></dd>
-<dt>Compared to buy now</dt><dd id="bn_c2"></dd>
-<dt>Also pay</dt><dd id="bn_o2"></dd>
-</dl></div>
 <div class="path"><h4>Wait one year</h4><dl>
 <dt>Price</dt><dd id="bn_p3"></dd>
 <dt>Rate</dt><dd id="bn_r3"></dd>
-<dt>Cash down</dt><dd id="bn_d3"></dd>
+<dt>Down payment</dt><dd id="bn_d3"></dd>
 <dt>Monthly payment</dt><dd id="bn_m3"></dd>
 <dt>Compared to buy now</dt><dd id="bn_c3"></dd>
 <dt>Also pay</dt><dd id="bn_o3"></dd>
@@ -244,7 +235,7 @@
 <div class="panel">
 <h3>Same home, three loans</h3>
 <div class="tw"><table>
-<tr><th>Loan</th><th>Cash down</th><th>Monthly</th><th>Cost of waiting</th></tr>
+<tr><th>Loan</th><th>Down payment</th><th>Monthly</th><th>Cost of waiting</th></tr>
 <tr><td>FHA</td><td id="bn_bd"></td><td id="bn_bm"></td><td id="bn_bw"></td></tr>
 <tr><td>VA</td><td id="bn_vd"></td><td id="bn_vm"></td><td id="bn_vw"></td></tr>
 <tr><td>Conventional</td><td id="bn_ad"></td><td id="bn_am"></td><td id="bn_aw"></td></tr>
@@ -259,11 +250,10 @@
 <h2>Questions buyers ask</h2>
 <div class="faq">
 <details><summary>Should I buy a house now or wait in Carlsbad, Oceanside, or Encinitas?</summary><p>It depends on how long you plan to stay, how much cash you have, what you pay in rent, and how you would feel if prices or rates moved the other way. Waiting can lower your payment if rates fall. It can also raise your price and cost you a year of rent with no equity built. The calculator above puts both sides next to each other using your numbers. For a plan built around your situation, talk with Kyle and a licensed lender.</p></details>
-<details><summary>Will mortgage rates go down in 2027?</summary><p>Nobody knows, and anyone who says they do is guessing. Rates move with inflation, the economy, and the bond market. Instead of betting on a number, drag the rate slider and see what a drop would and would not change. Some buyers close at today's rate and refinance later if rates fall far enough to cover the costs. That is not guaranteed, and it depends on qualifying at that time.</p></details>
+<details><summary>Will mortgage rates go down in 2027?</summary><p>Nobody knows, and anyone who says they do is guessing. Rates move with inflation, the economy, and the bond market. Instead of betting on a number, drag the rate slider and see what a drop would and would not change.</p></details>
 <details><summary>How much does waiting a year cost?</summary><p>It can cost in two ways. The price may rise, which raises the loan, and the rent you pay stays with the landlord and builds no equity. It can also save money, through a lower rate or more time to build a down payment. The calculator shows the price change, the new payment, and a year of rent in one view.</p></details>
-<details><summary>Why does a smaller down payment change the return on my cash?</summary><p>A home gains or loses value on its full price, not only on the part you paid in cash. On a $750,000 home, a 1.5% gain is $11,250. That is 7.5% of a $150,000 down payment and 42.9% of a $26,250 down payment. It works the other way when prices dip, and a smaller down payment usually means a bigger loan and mortgage insurance.</p></details>
+<details><summary>Why does a smaller down payment change my return on investment?</summary><p>A home gains or loses value on its full price, not only on the part you paid in cash. On a $750,000 home, a 1.5% gain is $11,250. That is 7.5% of a $150,000 down payment and 42.9% of a $26,250 down payment. It works the other way when prices dip, and a smaller down payment usually means a bigger loan and mortgage insurance.</p></details>
 <details><summary>What is the difference between FHA, VA, and conventional loans?</summary><p>FHA loans allow as little as 3.5% down. They add an upfront mortgage insurance premium of 1.75%, which is usually financed into the loan, plus a monthly premium. VA loans are for eligible service members, veterans, and some surviving spouses. They allow no down payment and have no monthly mortgage insurance, but they carry a one-time funding fee, 2.15% for first use with less than 5% down, unless you are exempt. Conventional loans often need private mortgage insurance when the down payment is under 20%.</p></details>
-<details><summary>What does buy now, refinance later mean?</summary><p>You buy with today's rate and refinance if rates drop enough to be worth it. A refinance has closing costs, often 2% to 5% of the new loan and sometimes up to 6%, and it takes time to earn them back. The calculator starts at 4% and shows how many months it takes to cover them. A refinance is never guaranteed, since you have to qualify when you apply.</p></details>
 
 </div>
 </div>

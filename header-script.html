@@ -1,4 +1,4 @@
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I buy a house now or wait in Carlsbad, Oceanside, or Encinitas?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on how long you plan to stay, how much cash you have, what you pay in rent, and how you would feel if prices or rates moved the other way. Waiting can lower your payment if rates fall. It can also raise your price and cost you a year of rent with no equity built. The calculator above puts both sides next to each other using your numbers. For a plan built around your situation, talk with Kyle and a licensed lender."}}, {"@type": "Question", "name": "Will mortgage rates go down in 2027?", "acceptedAnswer": {"@type": "Answer", "text": "Nobody knows, and anyone who says they do is guessing. Rates move with inflation, the economy, and the bond market. Instead of betting on a number, drag the rate slider and see what a drop would and would not change. Some buyers close at today's rate and refinance later if rates fall far enough to cover the costs. That is not guaranteed, and it depends on qualifying at that time."}}, {"@type": "Question", "name": "How much does waiting a year cost?", "acceptedAnswer": {"@type": "Answer", "text": "It can cost in two ways. The price may rise, which raises the loan, and the rent you pay stays with the landlord and builds no equity. It can also save money, through a lower rate or more time to build a down payment. The calculator shows the price change, the new payment, and a year of rent in one view."}}, {"@type": "Question", "name": "Why does a smaller down payment change the return on my cash?", "acceptedAnswer": {"@type": "Answer", "text": "A home gains or loses value on its full price, not only on the part you paid in cash. On a $750,000 home, a 1.5% gain is $11,250. That is 7.5% of a $150,000 down payment and 42.9% of a $26,250 down payment. It works the other way when prices dip, and a smaller down payment usually means a bigger loan and mortgage insurance."}}, {"@type": "Question", "name": "What is the difference between FHA, VA, and conventional loans?", "acceptedAnswer": {"@type": "Answer", "text": "FHA loans allow as little as 3.5% down. They add an upfront mortgage insurance premium of 1.75%, which is usually financed into the loan, plus a monthly premium. VA loans are for eligible service members, veterans, and some surviving spouses. They allow no down payment and have no monthly mortgage insurance, but they carry a one-time funding fee, 2.15% for first use with less than 5% down, unless you are exempt. Conventional loans often need private mortgage insurance when the down payment is under 20%."}}, {"@type": "Question", "name": "What does buy now, refinance later mean?", "acceptedAnswer": {"@type": "Answer", "text": "You buy with today's rate and refinance if rates drop enough to be worth it. A refinance has closing costs, often 2% to 5% of the new loan and sometimes up to 6%, and it takes time to earn them back. The calculator starts at 4% and shows how many months it takes to cover them. A refinance is never guaranteed, since you have to qualify when you apply."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I buy a house now or wait in Carlsbad, Oceanside, or Encinitas?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on how long you plan to stay, how much cash you have, what you pay in rent, and how you would feel if prices or rates moved the other way. Waiting can lower your payment if rates fall. It can also raise your price and cost you a year of rent with no equity built. The calculator above puts both sides next to each other using your numbers. For a plan built around your situation, talk with Kyle and a licensed lender."}}, {"@type": "Question", "name": "Will mortgage rates go down in 2027?", "acceptedAnswer": {"@type": "Answer", "text": "Nobody knows, and anyone who says they do is guessing. Rates move with inflation, the economy, and the bond market. Instead of betting on a number, drag the rate slider and see what a drop would and would not change."}}, {"@type": "Question", "name": "How much does waiting a year cost?", "acceptedAnswer": {"@type": "Answer", "text": "It can cost in two ways. The price may rise, which raises the loan, and the rent you pay stays with the landlord and builds no equity. It can also save money, through a lower rate or more time to build a down payment. The calculator shows the price change, the new payment, and a year of rent in one view."}}, {"@type": "Question", "name": "Why does a smaller down payment change my return on investment?", "acceptedAnswer": {"@type": "Answer", "text": "A home gains or loses value on its full price, not only on the part you paid in cash. On a $750,000 home, a 1.5% gain is $11,250. That is 7.5% of a $150,000 down payment and 42.9% of a $26,250 down payment. It works the other way when prices dip, and a smaller down payment usually means a bigger loan and mortgage insurance."}}, {"@type": "Question", "name": "What is the difference between FHA, VA, and conventional loans?", "acceptedAnswer": {"@type": "Answer", "text": "FHA loans allow as little as 3.5% down. They add an upfront mortgage insurance premium of 1.75%, which is usually financed into the loan, plus a monthly premium. VA loans are for eligible service members, veterans, and some surviving spouses. They allow no down payment and have no monthly mortgage insurance, but they carry a one-time funding fee, 2.15% for first use with less than 5% down, unless you are exempt. Conventional loans often need private mortgage insurance when the down payment is under 20%."}}]}</script>
 <script>
 (function(){
 function init(){
@@ -56,26 +56,23 @@ set('ttl',NAMES[sel][0]);set('sub',NAMES[sel][1]+'. Rate starts at an example. T
 }
 function upd(){
 clamp();
-var price=val('price',980000),rent=Math.max(val('rent',0),0),tih=Math.max(val('tih',0),0),rcp=Math.min(Math.max(val('rc',4),0),10);
+var price=val('price',750000),rent=Math.max(val('rent',0),0),tih=Math.max(val('tih',0),0);
 if(price<100000)price=100000;
 var g=val('g',1.5),drop=val('drop',0.5);
 set('gout',gText(g));set('dout',dText(drop));
 var o=L[sel],r0=o.r,r1=Math.max(r0-drop,1),np=price*(1+g/100),app=price*g/100;
 var a=calc(sel,o,price,r0),w=calc(sel,o,np,r1);
-var refiPay=pmt(a.bal,r1)+a.mi,rc=a.bal*rcp/100;
+
 var eq=app+a.pr;
 set('pay',money(a.pay));set('down',money(a.down));set('eq',money(eq));set('ret',retText(eq,a.down));
-var ex=sel==='v'?' The VA funding fee of '+vaFee(o,o.d).toFixed(2)+'% is added to the loan. There is no monthly mortgage insurance.':(a.mi>0?' plus '+money(a.mi)+(sel==='f'?' FHA mortgage insurance.':' PMI.'):' No mortgage insurance.');
-set('brk',money(a.pi)+' principal and interest.'+ex+' Year one adds '+sgn(app)+' from the price change and '+money(a.pr)+' paid toward the loan.');
-set('p1',money(price));set('p2',money(price));set('p3',money(np));
-set('r1',r0.toFixed(2)+'%');set('r2',r1.toFixed(2)+'%');set('r3',r1.toFixed(2)+'%');
-set('d1',money(a.down));set('d2',money(a.down));set('d3',money(w.down));
-set('m1',money(a.pay));set('m2',money(refiPay));set('m3',money(w.pay));
-var c2=refiPay-a.pay,c3=w.pay-a.pay;
-set('c2',sgn(c2)+' a month');cls($('c2'),c2);
+var ins=a.mi>0?': '+money(a.pi)+' for the loan plus '+money(a.mi)+(sel==='f'?' for FHA mortgage insurance.':' for PMI.'):(sel==='v'?'. VA has no monthly mortgage insurance. The VA funding fee of '+vaFee(o,o.d).toFixed(2)+'% is added to the loan.':'. No mortgage insurance.');
+set('brk','Your monthly payment is '+money(a.pay)+ins+' In year one you '+(eq>=0?'gain':'lose')+' about '+money(Math.abs(eq))+' in equity: '+sgn(app)+' from the price change and '+money(a.pr)+' from paying down the loan.');
+set('p1',money(price));set('p3',money(np));
+set('r1',r0.toFixed(2)+'%');set('r3',r1.toFixed(2)+'%');
+set('d1',money(a.down));set('d3',money(w.down));
+set('m1',money(a.pay));set('m3',money(w.pay));
+var c3=w.pay-a.pay;
 set('c3',sgn(c3)+' a month');cls($('c3'),c3);
-var sv=a.pay-refiPay,mo=Math.ceil(rc/Math.max(sv,0.01));
-set('o2',sv>0?money(rc)+' costs, paid back in '+(mo>120?'over 10 years':mo+' months'):money(rc)+' costs, no payback');
 set('o3','Rent '+money(rent*12)+' for the year, no equity');
 var own=12*(a.pay+tih)-eq,rn=12*rent,diff=rn-own;
 set('own',money(own));set('rentc',money(rn));
@@ -91,7 +88,7 @@ rates=r;
 ['c','f','v'].forEach(function(k){L[k].r=r[KEYS[k]];});
 load();upd();
 }
-['price','rent','tih','rc','g','drop','ld','lr','lp','lx','ls'].forEach(function(id){var el=$(id);el.addEventListener('input',upd);el.addEventListener('change',upd);});
+['price','rent','tih','g','drop','ld','lr','lp','lx','ls'].forEach(function(id){var el=$(id);el.addEventListener('input',upd);el.addEventListener('change',upd);});
 ['c','f','v'].forEach(function(k){$('b'+k).addEventListener('click',function(){clamp();sel=k;load();upd();});});
 applyRates(DEF);
 })();
