@@ -58,7 +58,7 @@ function upd(){
 clamp();
 var price=val('price',750000),rent=Math.max(val('rent',0),0),tih=Math.max(val('tih',0),0);
 if(price<100000)price=100000;
-var g=val('g',1.5),drop=val('drop',0.5);
+var g=val('g',3),drop=val('drop',0);
 set('gout',gText(g));set('dout',dText(drop));
 var o=L[sel],r0=o.r,r1=Math.max(r0-drop,1),np=price*(1+g/100),app=price*g/100;
 var a=calc(sel,o,price,r0),w=calc(sel,o,np,r1);
