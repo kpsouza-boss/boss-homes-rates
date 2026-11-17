@@ -53,7 +53,7 @@ function load(){
 var o=L[sel];
 $('ld').value=o.d;$('lr').value=o.r.toFixed(2);
 $('pmirow').hidden=sel!=='c';$('exrow').hidden=sel!=='v';$('sbrow').hidden=sel!=='v';
-set('ttl',NAMES[sel][0]);set('sub',NAMES[sel][1]+'. Rate starts at an example. Type today\'s rate from the widget above.');
+set('ttl',NAMES[sel][0]);set('sub',NAMES[sel][1]+'. Rate starts at an example. Tap See today\'s mortgage rates below to check the average.');
 ['c','f','v'].forEach(function(k){$('b'+k).setAttribute('aria-pressed',k===sel?'true':'false');});
 }
 function upd(){
@@ -93,7 +93,8 @@ var valN=price*Math.pow(1+g/100,N),eqN=valN-price+prinN(a.loan,r0,N);
 var realBuy=payN-eqN,gap=rentN-realBuy;
 set('rpay',money(rentN));set('rbuild',money(0));set('rreal',money(rentN));
 set('upay',money(payN));set('ubuild',money(eqN));set('ureal',money(realBuy));
-set('ryv','On these numbers, over '+N+(N===1?' year':' years')+', '+(gap>=0?'buying comes out about '+money(gap)+' ahead of renting':'renting comes out about '+money(-gap)+' ahead of buying')+' after counting the equity you build.');
+var balN=a.loan-prinN(a.loan,r0,N);
+set('ryv','After '+N+(N===1?' year':' years')+', renting costs about '+money(rentN)+' and builds no equity. Buying costs about '+money(realBuy)+' after counting the equity you build, and you would own a home worth about '+money(valN)+' with about '+money(balN)+' left on the loan. '+(gap>=0?'Buying costs about '+money(gap)+' less.':'Buying costs about '+money(-gap)+' more.'));
 set('rnote','Equity is on paper until you sell. Selling usually costs money too, about '+money(valN*cs/100)+' at '+cs+'%, and that is not counted above. Prices and rent can move either way, so treat this as a what-if, not a forecast.');
 ['1','2','3','4','5'].forEach(function(n){$('y'+n).setAttribute('aria-pressed',String(parseInt(n,10)===yrs));});
 }

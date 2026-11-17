@@ -131,6 +131,9 @@
 #bnow .rbc.hi .rl,#bnow .rbc.hi .rs{color:var(--hero-muted)}
 #bnow .rbc.hi .rv.big{color:var(--gold)}
 @media(max-width:560px){#bnow .rv{font-size:21px}#bnow .rbc{padding:12px}}
+#bnow details.rates{border-bottom:0;margin-top:14px}
+#bnow details.rates summary{font-size:16px;padding:10px 32px 10px 0}
+#bnow details.rates summary::after{top:4px;font-size:26px}
 </style>
 <div id="bnow">
 <div class="phonephoto"><img src="https://images.squarespace-cdn.com/content/v1/6462d2d0a83ff45a4108c525/23436bb2-95d1-4d03-b1fd-dbae681a7d50/san-diego-county-home-front.jpg?format=1000w" alt="Single-story home with a large windswept tree and a white picket fence in San Diego County" width="1000" height="416" loading="eager" decoding="async"></div>
@@ -142,37 +145,8 @@
 <p class="lede" style="margin-top:18px">Waiting for a lower rate can save money. It can also cost money if prices climb while you wait. Put in your own numbers and see both, side by side.</p>
 <p class="cities">Built for buyers in Carlsbad, Oceanside, Encinitas, San Marcos, Vista, Escondido, and San Diego.</p>
 <div class="btns" style="margin-top:22px"><a class="btn pri" href="https://kyle.athomeinsocal.com" target="_blank" rel="noopener">Start your home search</a></div>
-<div class="mndw" style="margin-top:22px;max-width:220px">
-<div class="mnd-rates-widget" style="width: 220px; height: 480px; font-size: 12px; ">
-<div class="w-header" style="text-align: center; padding:4px 0;background-color: #336699; color: #FFFFFF;"><a href="https://www.mortgagenewsdaily.com/mortgage-rates" target="_blank" style="color: #FFFFFF;text-decoration:none;">Today&#x27;s Mortgage Rates</a></div>
-<iframe src="//widgets.mortgagenewsdaily.com/widget/f/rates?t=expanded&sn=false&sc=true&c=336699&u=&cbu=&w=218&h=430" width="220" height="430" frameborder="0" scrolling="no" style="border: solid 1px #336699; border-width: 0 1px;box-sizing:border-box;width:220px;height:430px;display:block;"></iframe>
-<div class="w-footer" style="text-align: center; padding:4px 0;background-color: #336699; color: #FFFFFF;">View More <a href="https://www.mortgagenewsdaily.com/mortgage-rates" target="_blank" style="color: #FFFFFF;text-decoration:none;">Refinance Rates</a></div>
-</div>
-</div>
-<p class="src">Live average rates, courtesy of Mortgage News Daily. The calculator below starts with example rates. Change them to match the rates above or a lender quote.</p>
 </div>
 </header>
-
-<section class="sec">
-<div class="wrap">
-<h2>What changes when you wait</h2>
-<div class="cols">
-<div class="col"><h3>The price</h3><p>Home prices can rise, fall, or hold steady over a year. Drag the slider to see each one, because a higher price means a bigger loan.</p></div>
-<div class="col"><h3>The rate</h3><p>A lower rate lowers the monthly payment. A higher price pushes it back up. The calculator shows what the two do together.</p></div>
-<div class="col"><h3>The rent</h3><p>You pay rent every month. It does not build equity, and that adds up. Put your rent in the calculator and see what a year of waiting really costs.</p></div>
-</div>
-<div class="lev">
-<div>
-<h3>Why the down payment matters</h3>
-<p style="margin-top:8px">A home gains or loses value on its full price, not only on the part you paid in cash. Say a $750,000 home goes up 1.5%. That is $11,250 no matter how much you put down. What changes is how big that gain is compared with your own money. It works in reverse when prices dip, so the sliders below can go under zero.</p>
-</div>
-<div class="levbox" aria-label="Example: 1.5% gain on a $750,000 home">
-<div><b>7.5%</b><span>Put down $150,000 (20%). The $11,250 gain is 7.5% of your money.</span></div>
-<div><b>42.9%</b><span>Put down $26,250 (3.5%). The same $11,250 gain is 42.9% of your money.</span></div>
-</div>
-</div>
-</div>
-</section>
 
 <section class="sec band">
 <div class="wrap">
@@ -205,6 +179,16 @@
 <div class="fld" id="bn_exrow" hidden><label class="chk" for="bn_lx"><input type="checkbox" id="bn_lx">Funding fee exempt (VA disability rating)</label></div>
 <div class="fld" id="bn_sbrow" hidden><label class="chk" for="bn_ls"><input type="checkbox" id="bn_ls">I have used my VA loan benefit before</label></div>
 </div>
+<details class="rates"><summary>See today's mortgage rates</summary>
+<div class="mndw" style="margin-top:22px;max-width:220px">
+<div class="mnd-rates-widget" style="width: 220px; height: 480px; font-size: 12px; ">
+<div class="w-header" style="text-align: center; padding:4px 0;background-color: #336699; color: #FFFFFF;"><a href="https://www.mortgagenewsdaily.com/mortgage-rates" target="_blank" style="color: #FFFFFF;text-decoration:none;">Today&#x27;s Mortgage Rates</a></div>
+<iframe src="//widgets.mortgagenewsdaily.com/widget/f/rates?t=expanded&sn=false&sc=true&c=336699&u=&cbu=&w=218&h=430" width="220" height="430" frameborder="0" scrolling="no" style="border: solid 1px #336699; border-width: 0 1px;box-sizing:border-box;width:220px;height:430px;display:block;"></iframe>
+<div class="w-footer" style="text-align: center; padding:4px 0;background-color: #336699; color: #FFFFFF;">View More <a href="https://www.mortgagenewsdaily.com/mortgage-rates" target="_blank" style="color: #FFFFFF;text-decoration:none;">Refinance Rates</a></div>
+</div>
+</div>
+<p class="src">Live average rates, courtesy of Mortgage News Daily. The calculator starts with example rates. Change the interest rate above to match these rates or a lender quote.</p>
+</details>
 <p class="hint" id="bn_hint" role="status"></p>
 <div class="tiles">
 <div class="tile"><div class="k">Monthly payment</div><div class="v" id="bn_pay"></div></div>
@@ -216,7 +200,7 @@
 </div>
 
 <div class="panel">
-<h3>Renting or buying: what you pay and what you build</h3>
+<h3>Rent versus buying: what you pay and what you build</h3>
 <p class="sub">Either way, you pay for a place to live. The difference is what you have at the end. How many years will you stay?</p>
 <div class="seg five" role="group" aria-label="Years you stay">
 <button type="button" id="bn_y1" aria-pressed="false">1 yr</button>
@@ -288,6 +272,17 @@
 <tr><td>Conventional</td><td id="bn_ad"></td><td id="bn_am"></td><td id="bn_aw"></td></tr>
 </table></div>
 <p class="note">Each loan uses its own rate and down payment from the tabs above. Cost of waiting is a year of rent minus the cost of owning after equity. Change a loan's tab to change its row.</p>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<h2>What changes when you wait</h2>
+<div class="cols">
+<div class="col"><h3>The price</h3><p>Home prices can rise, fall, or hold steady over a year. Drag the slider to see each one, because a higher price means a bigger loan.</p></div>
+<div class="col"><h3>The rate</h3><p>A lower rate lowers the monthly payment. A higher price pushes it back up. The calculator shows what the two do together.</p></div>
+<div class="col"><h3>The rent</h3><p>You pay rent every month. It does not build equity, and that adds up. Put your rent in the calculator and see what a year of waiting really costs.</p></div>
 </div>
 </div>
 </section>
