@@ -107,6 +107,15 @@ load();upd();
 ['c','f','v'].forEach(function(k){$('b'+k).addEventListener('click',function(){clamp();sel=k;load();upd();});});
 ['1','2','3','4','5','10'].forEach(function(n){$('y'+n).addEventListener('click',function(){yrs=parseInt(n,10);upd();});});
 applyRates(DEF);
+var touched=false;['lr'].forEach(function(id){$(id).addEventListener('input',function(){touched=true;});});
+try{fetch('https://raw.githubusercontent.com/kpsouza-boss/boss-homes-rates/main/rates.json',{cache:'no-cache'}).then(function(x){return x.ok?x.json():null;}).then(function(j){
+if(!j||touched)return;
+var c=+j.conv,f=+j.fha,v=+j.va;
+if(!(c>2&&c<15&&f>2&&f<15&&v>2&&v<15))return;
+applyRates({fixed30:c,fha30:f,va30:v});
+var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(j.asOf||'');
+if(m){var mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m[2]-1];set('rasof','Mortgage News Daily rates as of '+mn+' '+(+m[3]));}
+}).catch(function(){});}catch(e){}
 })();
 }
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
