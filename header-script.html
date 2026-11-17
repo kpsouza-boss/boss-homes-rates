@@ -1,4 +1,4 @@
-<style>@media(max-width:767px){body .banner-thumbnail-wrapper.ylopo-home-banner,body .banner-thumbnail-wrapper.ylopo-home-banner figure#thumbnail,body .banner-thumbnail-wrapper.ylopo-home-banner .ylopo-home-banner-bg-image{height:48vw !important;min-height:0 !important}body .banner-thumbnail-wrapper.ylopo-home-banner{overflow:hidden !important;background:#fff !important}body .banner-thumbnail-wrapper.ylopo-home-banner .ylopo-banner-content-wrapper,body .banner-thumbnail-wrapper.ylopo-home-banner .color-overlay{display:none !important}}</style>
+<style>@media(max-width:767px){body .banner-thumbnail-wrapper.ylopo-home-banner{display:none !important}}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I buy a house now or wait in Carlsbad, Oceanside, or Encinitas?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on how long you plan to stay, how much cash you have, what you pay in rent, and how you would feel if prices or rates moved the other way. Waiting can lower your payment if rates fall. It can also raise your price and cost you a year of rent with no equity built. The calculator above puts both sides next to each other using your numbers. For a plan built around your situation, talk with Kyle and a licensed lender."}}, {"@type": "Question", "name": "Will mortgage rates go down in 2027?", "acceptedAnswer": {"@type": "Answer", "text": "Nobody knows, and anyone who says they do is guessing. Rates move with inflation, the economy, and the bond market. Instead of betting on a number, drag the rate slider and see what a drop would and would not change."}}, {"@type": "Question", "name": "How much does waiting a year cost?", "acceptedAnswer": {"@type": "Answer", "text": "It can cost in two ways. The price may rise, which raises the loan, and the rent you pay stays with the landlord and builds no equity. It can also save money, through a lower rate or more time to build a down payment. The calculator shows the price change, the new payment, and a year of rent in one view."}}, {"@type": "Question", "name": "Why does a smaller down payment change my return on investment?", "acceptedAnswer": {"@type": "Answer", "text": "A home gains or loses value on its full price, not only on the part you paid in cash. On a $750,000 home, a 1.5% gain is $11,250. That is 7.5% of a $150,000 down payment and 42.9% of a $26,250 down payment. It works the other way when prices dip, and a smaller down payment usually means a bigger loan and mortgage insurance."}}, {"@type": "Question", "name": "What is the difference between FHA, VA, and conventional loans?", "acceptedAnswer": {"@type": "Answer", "text": "FHA loans allow as little as 3.5% down. They add an upfront mortgage insurance premium of 1.75%, which is usually financed into the loan, plus a monthly premium. VA loans are for eligible service members, veterans, and some surviving spouses. They allow no down payment and have no monthly mortgage insurance, but they carry a one-time funding fee, 2.15% for first use with less than 5% down, unless you are exempt. Conventional loans often need private mortgage insurance when the down payment is under 20%."}}, {"@type": "Question", "name": "What does buy now, refinance later mean?", "acceptedAnswer": {"@type": "Answer", "text": "You buy with today's rate and refinance if rates drop enough to be worth it. A refinance has closing costs, often 2% to 5% of the new loan and sometimes up to 6%, and it takes time to earn them back. A refinance is never guaranteed, since you have to qualify when you apply."}}]}</script>
 <script>
 (function(){
@@ -9,7 +9,7 @@ root.setAttribute("data-ready","1");
 (function(){
 var DEF={fixed30:7.50,fha30:7.10,va30:7.10};
 var KEYS={c:'fixed30',f:'fha30',v:'va30'};
-var rates=DEF,sel='f';
+var rates=DEF,sel='f',yrs=5;
 var L={c:{d:20,r:DEF.fixed30,pmi:0.6,t:false},f:{d:3.5,r:DEF.fha30,t:false},v:{d:0,r:DEF.va30,ex:false,sb:false,t:false}};
 var NAMES={c:['Conventional','Strong credit example, 30-year fixed'],f:['FHA','Low down payment, 30-year fixed'],v:['VA','For eligible service members and veterans, 30-year fixed']};
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -20,7 +20,8 @@ function money(n){return (n<0?'-':'')+'$'+Math.round(Math.abs(n)).toLocaleString
 function sgn(n){return (n>=0?'+':'-')+'$'+Math.round(Math.abs(n)).toLocaleString('en-US');}
 function fmtDate(s){var p=s.split('-');return MON[parseInt(p[1],10)-1]+' '+parseInt(p[2],10)+', '+p[0];}
 function pmt(P,r){var i=r/1200;return i===0?P/360:P*i/(1-Math.pow(1+i,-360));}
-function prin(P,r){var i=r/1200,m=pmt(P,r),b=P;for(var k=0;k<12;k++)b=b*(1+i)-m;return P-b;}
+function prin(P,r){return prinN(P,r,1);}
+function prinN(P,r,n){var i=r/1200,m=pmt(P,r),b=P;for(var k=0;k<12*n;k++)b=b*(1+i)-m;return P-b;}
 function vaFee(o,d){if(o.ex)return 0;if(d<5)return o.sb?3.3:2.15;if(d<10)return 1.5;return 1.25;}
 function calc(t,o,price,rate){
 var d=o.d,down=price*d/100,base=price-down,loan=base,mi=0;
@@ -75,23 +76,35 @@ set('m1',money(a.pay));set('m3',money(w.pay));
 var c3=w.pay-a.pay;
 set('c3',sgn(c3)+' a month');cls($('c3'),c3);
 set('o3','Rent '+money(rent*12)+' for the year, no equity');
-var own=12*(a.pay+tih)-eq,rn=12*rent,diff=rn-own;
+var rp=Math.max(val('rp',1),0),rep=price*rp/100;
+var own=12*(a.pay+tih)+rep-eq,rn=12*rent,diff=rn-own;
 set('own',money(own));set('rentc',money(rn));
-set('verdict',diff>=0?'On these numbers, waiting one year costs about '+money(diff)+' compared with owning, after counting the equity you would have built. You pay rent every month, it builds no equity, and that adds up. Equity is on paper until you sell, and selling has costs.':'On these numbers, renting for the year costs about '+money(-diff)+' less than owning, even after counting the equity you would have built. Equity is on paper until you sell, and selling has costs.');
+set('verdict',diff>=0?'On these numbers, waiting one year costs about '+money(diff)+' compared with owning, after counting the equity you would have built and about '+money(rep)+' a year for repairs and upkeep. You pay rent every month, it builds no equity, and that adds up. Equity is on paper until you sell, and selling has costs.':'On these numbers, renting for the year costs about '+money(-diff)+' less than owning, even after counting the equity you would have built and about '+money(rep)+' a year for repairs and upkeep. Equity is on paper until you sell, and selling has costs.');
 set('verdict',$('verdict').textContent+' If you wait, the same home would cost about '+money(w.pay)+' a month, which is '+(c3>=0?money(c3)+' more':money(-c3)+' less')+' than buying now, and that difference continues every month after the first year.');
 set('cw',wt(diff));set('o3b',wt(diff));
 [['c','a'],['f','b'],['v','v']].forEach(function(k){
 var oo=L[k[0]],x=calc(k[0],oo,price,oo.r),e=app+x.pr;
-set(k[1]+'d',money(x.down));set(k[1]+'m',money(x.pay));set(k[1]+'w',wt(12*rent-(12*(x.pay+tih)-e)));
+set(k[1]+'d',money(x.down));set(k[1]+'m',money(x.pay));set(k[1]+'w',wt(12*rent-(12*(x.pay+tih)+rep-e)));
 });
+var rg=val('rg',3),cs=Math.max(val('cs',6),0),N=yrs;
+var rentN=0,payN=0,grow=1.0;
+for(var y=0;y<N;y++){rentN+=12*rent*Math.pow(1+rg/100,y);payN+=12*(a.pay+tih)+price*Math.pow(1+g/100,y)*rp/100;}
+var valN=price*Math.pow(1+g/100,N),eqN=valN-price+prinN(a.loan,r0,N);
+var realBuy=payN-eqN,gap=rentN-realBuy;
+set('rpay',money(rentN));set('rbuild',money(0));set('rreal',money(rentN));
+set('upay',money(payN));set('ubuild',money(eqN));set('ureal',money(realBuy));
+set('ryv','On these numbers, over '+N+(N===1?' year':' years')+', '+(gap>=0?'buying comes out about '+money(gap)+' ahead of renting':'renting comes out about '+money(-gap)+' ahead of buying')+' after counting the equity you build.');
+set('rnote','Equity is on paper until you sell. Selling usually costs money too, about '+money(valN*cs/100)+' at '+cs+'%, and that is not counted above. Prices and rent can move either way, so treat this as a what-if, not a forecast.');
+['1','2','3','4','5'].forEach(function(n){$('y'+n).setAttribute('aria-pressed',String(parseInt(n,10)===yrs));});
 }
 function applyRates(r){
 rates=r;
 ['c','f','v'].forEach(function(k){L[k].r=r[KEYS[k]];});
 load();upd();
 }
-['price','rent','tih','g','drop','ld','lr','lp','lx','ls'].forEach(function(id){var el=$(id);el.addEventListener('input',upd);el.addEventListener('change',upd);});
+['price','rent','tih','g','drop','ld','lr','lp','lx','ls','rg','rp','cs'].forEach(function(id){var el=$(id);el.addEventListener('input',upd);el.addEventListener('change',upd);});
 ['c','f','v'].forEach(function(k){$('b'+k).addEventListener('click',function(){clamp();sel=k;load();upd();});});
+['1','2','3','4','5'].forEach(function(n){$('y'+n).addEventListener('click',function(){yrs=parseInt(n,10);upd();});});
 applyRates(DEF);
 })();
 }

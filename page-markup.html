@@ -116,8 +116,24 @@
 #bnow input[type=number]{box-shadow:none;margin:0;max-width:none;text-transform:none;letter-spacing:normal}
 #bnow .btn{text-decoration:none;letter-spacing:normal;text-transform:none}
 #bnow details,#bnow summary{background:none;box-shadow:none}
+#bnow .phonephoto{display:none}
+#bnow .phonephoto img{display:block;width:100%;height:auto;margin:0}
+@media(max-width:767px){#bnow .phonephoto{display:block}}
+#bnow .seg.five{grid-template-columns:repeat(5,1fr);gap:6px}
+#bnow .seg.five button{font-size:16px;min-height:44px}
+#bnow .rb{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+#bnow .rbc{border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0}
+#bnow .rbc h4{font-family:var(--ff-head);font-size:20px;margin:0 0 8px;font-weight:700}
+#bnow .rl{font-size:13px;color:var(--muted);margin-top:10px}
+#bnow .rv{font-family:var(--ff-head);font-weight:700;font-size:24px;line-height:1.15;font-variant-numeric:tabular-nums}
+#bnow .rs{font-size:12px;color:var(--muted);margin-top:2px}
+#bnow .rbc.hi{background:var(--hero);color:var(--hero-fg);border-color:var(--hero)}
+#bnow .rbc.hi .rl,#bnow .rbc.hi .rs{color:var(--hero-muted)}
+#bnow .rbc.hi .rv.big{color:var(--gold)}
+@media(max-width:560px){#bnow .rv{font-size:21px}#bnow .rbc{padding:12px}}
 </style>
 <div id="bnow">
+<div class="phonephoto"><img src="https://images.squarespace-cdn.com/content/v1/6462d2d0a83ff45a4108c525/23436bb2-95d1-4d03-b1fd-dbae681a7d50/san-diego-county-home-front.jpg?format=1000w" alt="Single-story home with a large windswept tree and a white picket fence in San Diego County" width="1000" height="416" loading="eager" decoding="async"></div>
 <header class="hero">
 <div class="wrap">
 <p class="eyebrow">San Diego home buyers</p>
@@ -168,7 +184,7 @@
 <div class="fld"><label for="bn_price">Home price</label><input type="number" id="bn_price" value="750000" step="10000" inputmode="decimal"></div>
 <div class="fld"><label for="bn_rent">Rent you pay now (monthly)</label><input type="number" id="bn_rent" value="3500" step="100" inputmode="decimal"></div>
 <div class="fld"><label for="bn_tih">Taxes, insurance, and HOA (monthly)</label><input type="number" id="bn_tih" value="1100" step="50" inputmode="decimal"></div>
-<div class="fld"><div class="sl"><label for="bn_g">Home prices in 12 months</label><b id="bn_gout"></b></div><input type="range" id="bn_g" min="-8" max="8" step="0.5" value="3"></div>
+<div class="fld"><div class="sl"><label for="bn_g">Home prices each year</label><b id="bn_gout"></b></div><input type="range" id="bn_g" min="-8" max="8" step="0.5" value="3"></div>
 <div class="fld"><div class="sl"><label for="bn_drop">Rates in 12 months</label><b id="bn_dout"></b></div><input type="range" id="bn_drop" min="-1.5" max="1.5" step="0.25" value="0"></div>
 </div>
 </div>
@@ -197,6 +213,37 @@
 <div class="tile hi"><div class="k">Return on investment</div><div class="v" id="bn_ret"></div></div>
 </div>
 <p class="brk" id="bn_brk"></p>
+</div>
+
+<div class="panel">
+<h3>Renting or buying: what you pay and what you build</h3>
+<p class="sub">Either way, you pay for a place to live. The difference is what you have at the end. How many years will you stay?</p>
+<div class="seg five" role="group" aria-label="Years you stay">
+<button type="button" id="bn_y1" aria-pressed="false">1 yr</button>
+<button type="button" id="bn_y2" aria-pressed="false">2 yrs</button>
+<button type="button" id="bn_y3" aria-pressed="false">3 yrs</button>
+<button type="button" id="bn_y4" aria-pressed="false">4 yrs</button>
+<button type="button" id="bn_y5" aria-pressed="true">5 yrs</button>
+</div>
+<div class="grid2" style="margin-top:14px">
+<div class="fld"><label for="bn_rg">Rent goes up each year (%)</label><input type="number" id="bn_rg" value="3" step="0.5" inputmode="decimal"></div>
+<div class="fld"><label for="bn_rp">Repairs and upkeep (% of price, per year)</label><input type="number" id="bn_rp" value="1" step="0.25" inputmode="decimal"></div>
+<div class="fld"><label for="bn_cs">Cost to sell later (% of price)</label><input type="number" id="bn_cs" value="6" step="0.5" inputmode="decimal"></div>
+</div>
+<div class="rb">
+<div class="rbc"><h4>Renting</h4>
+<div class="rl">You pay</div><div class="rv" id="bn_rpay"></div><div class="rs">Rent, going up each year</div>
+<div class="rl">You build</div><div class="rv" id="bn_rbuild"></div><div class="rs">Nothing, unless you save the difference yourself</div>
+<div class="rl">What it really costs you</div><div class="rv big" id="bn_rreal"></div>
+</div>
+<div class="rbc hi"><h4>Buying</h4>
+<div class="rl">You pay</div><div class="rv" id="bn_upay"></div><div class="rs">Loan, taxes, insurance, HOA, repairs</div>
+<div class="rl">You build</div><div class="rv" id="bn_ubuild"></div><div class="rs">Loan paid down plus the price change</div>
+<div class="rl">What it really costs you</div><div class="rv big" id="bn_ureal"></div>
+</div>
+</div>
+<p class="verdict" id="bn_ryv"></p>
+<p class="note" id="bn_rnote" style="margin-top:10px"></p>
 </div>
 
 <div class="panel">
