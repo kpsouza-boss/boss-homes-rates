@@ -45,6 +45,10 @@
 #bnow .levbox div{background:var(--chip);border-radius:10px;padding:14px;min-width:0}
 #bnow .levbox b{display:block;font-family:var(--ff-head);font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}
 #bnow .levbox span{font-size:13px;color:var(--muted)}
+#bnow .guide{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;margin-top:18px}
+#bnow .guide img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:50% 20%;border-radius:12px;display:block}
+#bnow .guide p{margin:0 0 12px}
+@media(max-width:600px){#bnow .guide{grid-template-columns:1fr;gap:16px}#bnow .guide img{max-width:240px}}
 #bnow .intro{color:var(--muted);max-width:64ch;margin-top:10px}
 #bnow .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:18px}
 #bnow .panel>h3{margin-bottom:4px}
@@ -294,8 +298,13 @@
 <section class="sec band" id="guide">
 <div class="wrap">
 <h2>Your guide: Kyle Souza</h2>
-<p class="intro">Kyle has been selling homes in San Diego County since 2005 and has helped more than 600 families. Some were first-time buyers. Some were moving up. Some were in a tough spot and needed a clear plan. He works from Keller Williams in Carlsbad and spends his weeks in Carlsbad, Oceanside, Encinitas, San Marcos, Vista, and Escondido.</p>
+<div class="guide">
+<img src="https://images.squarespace-cdn.com/content/v1/6462d2d0a83ff45a4108c525/1700706912856-6892M40PR1ILUDBC60I2/Kyle+outside.jpg?format=500w" alt="Kyle Souza, San Diego County real estate agent, smiling in a gray blazer" width="500" height="500" loading="lazy" decoding="async">
+<div>
+<p class="intro">Kyle has been selling homes in San Diego County since 2005 and has helped more than 600 families. Some were first-time buyers. Some were moving up. Some were in a tough spot and needed a clear plan. He spends his weeks in Carlsbad, Oceanside, Encinitas, San Marcos, Vista, and Escondido.</p>
 <p class="intro">His job is not to push you into a house. It is to run the numbers with you, tell you the truth, and help you build a path you can stick with. If waiting is the right call for you, he will say so. There are no stupid questions.</p>
+</div>
+</div>
 </div>
 </section>
 
@@ -369,6 +378,7 @@
 <div class="wrap">
 <p>This is an illustration, not a loan offer, rate quote, or commitment to lend. The calculator starts with example rates. Current average rates in the widget come from <a href="https://www.mortgagenewsdaily.com/mortgage-rates" target="_blank" rel="noopener">Mortgage News Daily</a>, a national benchmark. Your own rate can differ with credit, loan size, down payment, and lender. FHA mortgage insurance rates and VA funding fees were checked against HUD and VA.gov on Nov 16, 2026, and they can change. Equity figures leave out closing costs and selling costs. Appreciation can be negative. Kyle is a real estate agent, not a lender, so talk with a licensed lender for your actual numbers.</p>
 <p><b>Kyle Souza</b> | Buy Or Sell SoCal Homes | DRE 01506738 | Equal Housing Opportunity</p>
+<p>Brokerage: Keller Williams Carlsbad</p>
 </div>
 </footer>
 </div>
