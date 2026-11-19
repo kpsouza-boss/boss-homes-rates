@@ -66,6 +66,7 @@
 #bnow .seg button{min-height:48px;border:1px solid var(--field-line);background:transparent;color:var(--fg);border-radius:8px;font-family:var(--ff-head);font-weight:700;font-size:18px;cursor:pointer}
 #bnow .seg button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
 #bnow .linkbtn{background:none;border:0;padding:0;color:var(--fg);text-decoration:underline;font:inherit;font-size:13px;cursor:pointer;text-align:left;min-height:32px}
+#bnow .waitline{font-size:16px;font-weight:700;margin:14px 0 0;line-height:1.4}
 #bnow .hint{font-size:13px;color:var(--neg);min-height:18px;margin-top:6px}
 #bnow .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
 #bnow .tile{background:var(--chip);border-radius:10px;padding:12px 14px;min-width:0}
@@ -144,7 +145,7 @@
 <div class="phonephoto"><img src="https://images.squarespace-cdn.com/content/v1/6462d2d0a83ff45a4108c525/23436bb2-95d1-4d03-b1fd-dbae681a7d50/san-diego-county-home-front.jpg?format=1000w" alt="Single-story home with a large windswept tree and a white picket fence in San Diego County" width="1000" height="416" loading="eager" decoding="async"></div>
 <header class="hero">
 <div class="wrap">
-<p class="eyebrow">Build wealth with a home</p>
+<p class="eyebrow">Build wealth and equity</p>
 <hr class="rule">
 <h1>Should I Buy a Home Now or Wait?</h1>
 <p class="lede" style="margin-top:18px">Every rent check is gone for good. Every mortgage payment builds something you own. Kyle will walk you through the numbers, so you can see what buying now, or waiting, means for your wealth.</p>
@@ -163,8 +164,9 @@
 <div class="fld"><label for="bn_rent">Rent you pay now (monthly)</label><input type="number" id="bn_rent" value="4300" step="100" inputmode="decimal"></div>
 <div class="fld"><label for="bn_tih">Taxes, insurance, and HOA (monthly)</label><input type="number" id="bn_tih" value="1100" step="50" inputmode="decimal"></div>
 <div class="fld"><div class="sl"><label for="bn_g">Home prices each year</label><b id="bn_gout"></b></div><input type="range" id="bn_g" min="-8" max="8" step="0.5" value="3"></div>
-<div class="fld"><div class="sl"><label for="bn_drop">Rates in 12 months</label><b id="bn_dout"></b></div><input type="range" id="bn_drop" min="-1.5" max="1.5" step="0.25" value="0"></div>
+<div class="fld"><div class="sl"><label for="bn_drop">Rates if you wait 12 months</label><b id="bn_dout"></b></div><input type="range" id="bn_drop" min="-1.5" max="1.5" step="0.25" value="0"></div>
 </div>
+<p class="waitline" id="bn_wl" role="status"></p>
 </div>
 
 <div class="seg" role="group" aria-label="Loan type">
@@ -183,7 +185,7 @@
 <div class="fld" id="bn_exrow" hidden><label class="chk" for="bn_lx"><input type="checkbox" id="bn_lx">Funding fee exempt (VA disability rating)</label></div>
 <div class="fld" id="bn_sbrow" hidden><label class="chk" for="bn_ls"><input type="checkbox" id="bn_ls">I have used my VA loan benefit before</label></div>
 </div>
-<details class="rates"><summary>See today's mortgage rates</summary>
+<details class="rates"><summary>See today's mortgage rates from Mortgage News Daily</summary>
 <div class="mndw" style="margin-top:22px;max-width:220px">
 <div class="mnd-rates-widget" style="width: 220px; height: 480px; font-size: 12px; ">
 <div class="w-header" style="text-align: center; padding:4px 0;background-color: #336699; color: #FFFFFF;"><a href="https://www.mortgagenewsdaily.com/mortgage-rates" target="_blank" style="color: #FFFFFF;text-decoration:none;">Today&#x27;s Mortgage Rates</a></div>

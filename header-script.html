@@ -74,7 +74,7 @@ set('r1',r0.toFixed(2)+'%');set('r3',r1.toFixed(2)+'%');
 set('d1',money(a.down));set('d3',money(w.down));
 set('m1',money(a.pay));set('m3',money(w.pay));
 var c3=w.pay-a.pay;
-set('c3',sgn(c3)+' a month');cls($('c3'),c3);
+set('c3',sgn(c3)+' a month');cls($('c3'),c3);set('wl','If you wait 12 months: about '+money(w.pay)+' a month, which is '+(c3>=0?money(c3)+' more':money(-c3)+' less')+' than buying now.');
 set('o3','Rent '+money(rent*12)+' for the year, no equity');
 var rp=Math.max(val('rp',1),0),rep=price*rp/100;
 var own=12*(a.pay+tih)+rep-eq,rn=12*rent,diff=rn-own;
