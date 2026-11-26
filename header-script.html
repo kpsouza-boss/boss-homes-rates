@@ -9,7 +9,7 @@ root.setAttribute("data-ready","1");
 (function(){
 var DEF={fixed30:7.48,fha30:7.05,va30:7.07};
 var KEYS={c:'fixed30',f:'fha30',v:'va30'};
-var rates=DEF,sel='f',yrs=5;
+var rates=DEF,sel='f',yrs=10;
 var L={c:{d:20,r:DEF.fixed30,pmi:0.6,t:false},f:{d:3.5,r:DEF.fha30,t:false},v:{d:0,r:DEF.va30,ex:false,sb:false,t:false}};
 var NAMES={c:['Conventional','Strong credit example, 30-year fixed'],f:['FHA','Low down payment, 30-year fixed'],v:['VA','For eligible service members and veterans, 30-year fixed']};
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -97,7 +97,7 @@ set('rnote','Equity is on paper until you sell. Selling usually costs money too,
 function hz(n){var rN=0,pN=0;for(var y=0;y<n;y++){rN+=12*rent*Math.pow(1+rg/100,y);pN+=12*(a.pay+tih)+price*Math.pow(1+g/100,y)*rp/100;}var vN=price*Math.pow(1+g/100,n),bN=a.loan-prinN(a.loan,r0,n);return {gap:rN-(a.down+pN-(vN-bN)),val:vN};}
 function cmp(x){return x>=0?'buying comes out about '+money(x)+' ahead of renting':'renting comes out about '+money(-x)+' ahead of buying';}
 var h10=hz(10),vt='Over 10 years, '+cmp(h10.gap)+', and you would own a home worth about '+money(h10.val)+'. ';
-if(N!==10){var hs=hz(N);vt+='Over '+N+(N===1?' year':' years')+', '+cmp(hs.gap)+'. ';}
+if(N!==10||true){var q=N!==10?N:5,hs=hz(q);vt+='Over '+q+(q===1?' year':' years')+', '+cmp(hs.gap)+'. ';}
 vt+='In year one alone, '+(diff>=0?'owning comes out about '+money(diff)+' ahead of renting.':'renting comes out about '+money(-diff)+' ahead'+(g>0?', because equity starts small and builds over time.':'.'))+' These totals count about '+money(rep)+' a year for repairs and upkeep and leave out closing and selling costs. Equity is on paper until you sell. If you wait, the same home would cost about '+money(w.pay)+' a month, which is '+(c3>=0?money(c3)+' more':money(-c3)+' less')+' than buying now.';
 set('verdict',vt);
 ['1','2','3','4','5','10'].forEach(function(n){$('y'+n).setAttribute('aria-pressed',String(parseInt(n,10)===yrs));});
