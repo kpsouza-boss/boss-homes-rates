@@ -79,8 +79,6 @@ set('o3','Rent '+money(rent*12)+' for the year, no equity');
 var rp=Math.max(val('rp',1),0),rep=price*rp/100;
 var own=12*(a.pay+tih)+rep-eq,rn=12*rent,diff=rn-own;
 set('own',money(own));set('rentc',money(rn));
-set('verdict',diff>=0?'On these numbers, waiting one year costs about '+money(diff)+' compared with owning, after counting the equity you would have built and about '+money(rep)+' a year for repairs and upkeep. You pay rent every month, it builds no equity, and that adds up. Equity is on paper until you sell, and selling has costs.':'On these numbers, renting for the year costs about '+money(-diff)+' less than owning, even after counting the equity you would have built and about '+money(rep)+' a year for repairs and upkeep. Equity is on paper until you sell, and selling has costs.');
-set('verdict',$('verdict').textContent+' If you wait, the same home would cost about '+money(w.pay)+' a month, which is '+(c3>=0?money(c3)+' more':money(-c3)+' less')+' than buying now, and that difference continues every month after the first year.');
 set('cw',wt(diff));set('o3b',wt(diff));
 [['c','a'],['f','b'],['v','v']].forEach(function(k){
 var oo=L[k[0]],x=calc(k[0],oo,price,oo.r),e=app+x.pr;
@@ -96,6 +94,12 @@ set('upay',money(a.down+payN));set('ubuild',money(eqAll));set('ureal',money(real
 set('ubs','Home worth about '+money(valN)+', loan left about '+money(balN));
 set('ryv','After '+N+(N===1?' year':' years')+', renting costs about '+money(rentN)+' and builds no equity. Buying costs about '+money(realBuy)+' after counting your equity, and you would own a home worth about '+money(valN)+' with about '+money(balN)+' left on the loan. '+(gap>=0?'Buying costs about '+money(gap)+' less.':'Buying costs about '+money(-gap)+' more. Rent can keep rising while a fixed loan payment does not, so that gap tends to shrink the longer you stay.'));
 set('rnote','Equity is on paper until you sell. Selling usually costs money too, about '+money(valN*cs/100)+' at '+cs+'%, and closing costs when you buy are not counted either. Prices and rent can move either way, so treat this as a what-if, not a forecast.');
+function hz(n){var rN=0,pN=0;for(var y=0;y<n;y++){rN+=12*rent*Math.pow(1+rg/100,y);pN+=12*(a.pay+tih)+price*Math.pow(1+g/100,y)*rp/100;}var vN=price*Math.pow(1+g/100,n),bN=a.loan-prinN(a.loan,r0,n);return {gap:rN-(a.down+pN-(vN-bN)),val:vN};}
+function cmp(x){return x>=0?'buying comes out about '+money(x)+' ahead of renting':'renting comes out about '+money(-x)+' ahead of buying';}
+var h10=hz(10),vt='Over 10 years, '+cmp(h10.gap)+', and you would own a home worth about '+money(h10.val)+'. ';
+if(N!==10){var hs=hz(N);vt+='Over '+N+(N===1?' year':' years')+', '+cmp(hs.gap)+'. ';}
+vt+='In year one alone, '+(diff>=0?'owning comes out about '+money(diff)+' ahead of renting.':'renting comes out about '+money(-diff)+' ahead'+(g>0?', because equity starts small and builds over time.':'.'))+' These totals count about '+money(rep)+' a year for repairs and upkeep and leave out closing and selling costs. Equity is on paper until you sell. If you wait, the same home would cost about '+money(w.pay)+' a month, which is '+(c3>=0?money(c3)+' more':money(-c3)+' less')+' than buying now.';
+set('verdict',vt);
 ['1','2','3','4','5','10'].forEach(function(n){$('y'+n).setAttribute('aria-pressed',String(parseInt(n,10)===yrs));});
 }
 function applyRates(r){
